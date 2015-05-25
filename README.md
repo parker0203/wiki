@@ -1,3 +1,3 @@
 # wiki
 
-test change
+[wiki-test](http://supernunu-wiki.appspot.com/)
