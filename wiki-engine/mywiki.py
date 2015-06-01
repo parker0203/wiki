@@ -2,6 +2,7 @@ import webapp2
 
 # pip
 import markdown
+import markdown2
 
 # my lib
 import path
@@ -25,7 +26,9 @@ class git_md(webapp2.RequestHandler):
         for line in data:
             line2 += line
             line2 += "\r"
-        html = markdown.markdown(line2)
+        
+        #html = markdown.markdown(line2)
+        html = markdown2.markdown_path(path.md_path + "git.md", extras=["fenced-code-blocks"])
         self.response.write(html)
         
 
