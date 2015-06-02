@@ -3,7 +3,7 @@
 **[Home](https://github.com/parker0203/supernunu/wiki)**
 
 **Coding Helper**
-* [Git](https://github.com/parker0203/supernunu/wiki/Git)
+* [Git](http://supernunu-wiki.appspot.com/git)
 * [Bash](https://github.com/parker0203/supernunu/wiki/Bash)
 
 **Editor**

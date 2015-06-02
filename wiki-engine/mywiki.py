@@ -8,12 +8,16 @@ import markdown2
 import path
 import reader 
 
+amateur_header = reader.read_file_to_string(path.template_path + "amateur-header.html")
+amateur_header += reader.read_file_to_string(path.css_path + "github.css")
+amateur_header += reader.read_file_to_string(path.template_path+ "amateur-mid.html")
 
+amateur_footer = reader.read_file_to_string(path.template_path + "amateur-footer.html")
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'html'
-        data = reader.read_md(path.md_path + "home.md")
+        data = reader.read_file_to_string_list(path.md_path + "home.md")
         for line in data:
             html = markdown.markdown(line)
             self.response.write(html)
@@ -21,15 +25,12 @@ class MainPage(webapp2.RequestHandler):
 class git_md(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'html'
-        data = reader.read_md(path.md_path + "git.md")
-        line2 = ""
-        for line in data:
-            line2 += line
-            line2 += "\r"
+        self.response.write(amateur_header)
+        md_parse = reader.read_file_to_string(path.md_path + "git.md")
         
-        #html = markdown.markdown(line2)
-        html = markdown2.markdown_path(path.md_path + "git.md", extras=["fenced-code-blocks"])
-        self.response.write(html)
+        md_html = markdown2.markdown(md_parse, extras={'fenced-code-blocks': {'cssclass': 'github'}}) # this  github css does not do anything right now
+        self.response.write(md_html)
+        self.response.write(amateur_footer)
         
 
 app = webapp2.WSGIApplication([
